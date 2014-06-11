@@ -1,6 +1,6 @@
 function Queue() {
   this.size = 0;
-  this.pointer = 0;
+  this.startingPoint = 0;
   this.elements = [];
 }
 
@@ -16,22 +16,28 @@ Queue.prototype = {
   },
 
   dequeue: function() {
-    if (this.size === 0)
-      throw new Error("Underflowed the queue, have we?");
-
-    var item = this.elements[this.pointer];
-    this.size--;
-    this.pointer++;
-
-    if (this.elements.length > 100 && this.pointer > this.size / 2)
-      this.tightenUp();
-
+    this.throwErrorIfTryingToUnderflow();
+    var item = this.elements[this.startingPoint];
+    this.removeItem();
     return item;
   },
 
+  throwErrorIfTryingToUnderflow: function() {
+    if (this.size === 0)
+      throw new Error("Underflowed the queue, have we?");
+  },
+
+  removeItem: function() {
+    this.size--;
+    this.startingPoint++;
+
+    if (this.elements.length > 100 && this.startingPoint > this.size / 2)
+      this.tightenUp();
+  },
+
   tightenUp: function() {
-    this.elements = this.elements.slice(this.pointer);
-    this.pointer = 0;
+    this.elements = this.elements.slice(this.startingPoint);
+    this.startingPoint = 0;
   }
 
 };

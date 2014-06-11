@@ -11,6 +11,14 @@ describe("Queue", function() {
     }
   }
 
+  function range(n) {
+    var numbers = [];
+    for (var i = 0; i < n; i++) {
+      numbers[i] = i;
+    }
+    return numbers;
+  }
+
 
   var queue;
 
@@ -59,19 +67,11 @@ describe("Queue", function() {
     expect(queue.dequeue()).toEqual("A");
   });
 
-  // it("the pointer is never greater than half the size", function() {
-  //   queue.enqueue("A");
-  //   queue.enqueue("B");
-  //   queue.enqueue("C");
-  //   queue.dequeue();
-  //   queue.dequeue();
-  //   expect(queue.pointer <= queue.getSize() / 2).toBeTruthy();
-  // });
-
-  it("when you enqueue 7 items and dequeue 5 items, the next dequeue returns the 6th item", function() {
-    enqueueMulti(queue, ["A", "B", "C", "D", "E", "F", "G"]);
-    dequeueMulti(queue, 5);
-    expect(queue.dequeue()).toEqual("F");
+  it("when you enqueue 700 items and dequeue 500 items, the next dequeue returns the 501st item", function() {
+    var items = range(700);
+    enqueueMulti(queue, items);
+    dequeueMulti(queue, 500);
+    expect(queue.dequeue()).toEqual(items[500]);
   });
 
 });

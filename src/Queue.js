@@ -23,7 +23,7 @@ Queue.prototype = {
     this.size--;
     this.pointer++;
 
-    if (this.pointer > this.size / 2)
+    if (this.elements.length > 100 && this.pointer > this.size / 2)
       this._tightenUp();
 
     return item;

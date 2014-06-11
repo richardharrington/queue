@@ -24,12 +24,12 @@ Queue.prototype = {
     this.pointer++;
 
     if (this.elements.length > 100 && this.pointer > this.size / 2)
-      this._tightenUp();
+      this.tightenUp();
 
     return item;
   },
 
-  _tightenUp: function() {
+  tightenUp: function() {
     this.elements = this.elements.slice(this.pointer);
     this.pointer = 0;
   }

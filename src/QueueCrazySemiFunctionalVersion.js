@@ -43,12 +43,12 @@ var List = {
 
 };
 
-function Queue() {
+function QueueCrazySemiFunctionalVersion() {
   this.primaryList = List.EMPTY_LIST;
   this.secondaryList = List.EMPTY_LIST;
 }
 
-Queue.prototype = {
+QueueCrazySemiFunctionalVersion.prototype = {
 
   getSize: function() {
     return List.getSize(this.primaryList);
